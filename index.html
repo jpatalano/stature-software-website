@@ -291,6 +291,72 @@
 
     .section-eyebrow .material-symbols-outlined { font-size: 1.1rem; }
 
+    /* ── TESTIMONIALS ── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5px;
+      background: var(--fg-dim);
+      border: 1px solid var(--fg-dim);
+      margin-top: 4rem;
+    }
+
+    .testimonial {
+      background: var(--bg);
+      padding: 3rem 2.75rem;
+      display: flex;
+      flex-direction: column;
+      transition: background 0.4s ease, opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1), filter 0.8s cubic-bezier(0.16,1,0.3,1);
+      opacity: 0;
+      transform: translateY(28px);
+      filter: blur(6px);
+    }
+
+    .testimonial:hover { background: rgba(63,168,176,0.04); }
+
+    .testimonial.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    .testimonial:nth-child(1) { transition-delay: 0s; }
+    .testimonial:nth-child(2) { transition-delay: 0.15s; }
+
+    .testimonial-icon {
+      color: var(--teal);
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonial-quote {
+      font-size: 0.98rem;
+      line-height: 1.85;
+      color: var(--fg-muted);
+      flex-grow: 1;
+    }
+
+    .testimonial-quote strong { color: var(--fg); font-weight: 500; }
+
+    .testimonial-attribution {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--fg-dim);
+    }
+
+    .testimonial-name {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--fg);
+    }
+
+    .testimonial-role {
+      font-size: 0.82rem;
+      color: var(--fg-muted);
+      margin-top: 0.25rem;
+    }
+
     /* ── TWO-PHASE SECTION ── */
     .phase-grid {
       display: grid;
@@ -582,6 +648,7 @@
       .hero-sub { margin-top: 1.25rem; margin-bottom: 2rem; }
       .phase-grid { grid-template-columns: 1fr; }
       .principles-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
       .stack-split { grid-template-columns: 1fr; gap: 3rem; }
       .advisors-band-inner { grid-template-columns: 1fr; }
       .section { padding: 5rem 1.5rem; }
@@ -595,7 +662,7 @@
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
       }
-      .phase-card, .principle {
+      .phase-card, .principle, .testimonial {
         opacity: 1 !important;
         transform: none !important;
         filter: none !important;
@@ -807,6 +874,32 @@
     </div>
   </div>
 
+  <!-- TESTIMONIALS -->
+  <section class="section" id="testimonials">
+    <div class="section-eyebrow"><span class="material-symbols-outlined">format_quote</span>What Clients Say</div>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <span class="material-symbols-outlined testimonial-icon">format_quote</span>
+        <p class="testimonial-quote">
+          When I started Blueforce in 2005, a colleague told me about Stature Software and I hired them immediately. I've been working with them ever since and have never looked elsewhere. 14 years later, we have a robust, trusted, and rock solid family of commercial products for national security that cross Windows, Android, iOS, Linux, and HTML5. Stature has nailed every requirement we have thrown at them to include communications, encryption, messaging, AI, machine learning, streaming multi-media, GIS/mapping, provisioning, activation/licensing, and API/SDK development. When you take the breadth of capability and combine it with superior core competencies in platforms and application development, Stature delivers the complete package. <strong>Joe and team are simply the best developers, architects, and innovators I have had the privilege to work with.</strong>
+        </p>
+        <div class="testimonial-attribution">
+          <div class="testimonial-name">Michael Helfrich</div>
+          <div class="testimonial-role">President and CEO, Blueforce Development Corporation</div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <span class="material-symbols-outlined testimonial-icon">format_quote</span>
+        <p class="testimonial-quote">
+          I cannot recommend Stature Software highly enough, they have been able to take our complex and evolving development requirements and transform them into stable, robust and user-friendly applications. What has been particularly useful working with Stature is the ideas that they come up with to improve design and performance, things that we would not have thought of, but have ended up really helping with the development. <strong>They are efficient and flexible with a 'nothing is too difficult' attitude but still able to produce a very high-quality product.</strong> Thanks again Joe and Vitaliy!
+        </p>
+        <div class="testimonial-attribution">
+          <div class="testimonial-name">Oliver</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ADVISORS BAND -->
   <div class="advisors-band">
     <div class="advisors-band-inner">
@@ -861,7 +954,7 @@
 
   <script>
     (function () {
-      var revealEls = document.querySelectorAll('.phase-card, .principle');
+      var revealEls = document.querySelectorAll('.phase-card, .principle, .testimonial');
       if (!revealEls.length) return;
 
       if (!('IntersectionObserver' in window)) {
